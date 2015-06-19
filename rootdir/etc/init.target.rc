@@ -34,6 +34,9 @@ on early-init
 on fs
     mount_all fstab.qcom
 
+    # Enable zRAM
+    swapon_all /fstab.qcom
+
     # Keeping following partitions outside fstab file. As user may not have
     # these partition flashed on the device. Failure to mount any partition in fstab file
     # results in failure to launch late-start class.
@@ -73,10 +76,19 @@ on boot
     #camera
     chown system camera /sys/class/ledflash/sec_ledflash/torch
 
-# ko files for vibrator (block this cmd temporary. vibrato driver cause reset during boot)
-    insmod /system/lib/modules/vibrator.ko
+# Set permissions for vibetonz
     chown system system /sys/class/timed_output/vibrator/enable
     chmod 0664 /sys/class/timed_output/vibrator/enable
+    chown system system /sys/class/timed_output/vibrator/pwm_value
+    chmod 0660 /sys/class/timed_output/vibrator/pwm_value
+    chown system system /sys/class/timed_output/vibrator/pwm_max
+    chmod 0660 /sys/class/timed_output/vibrator/pwm_max
+    chown system system /sys/class/timed_output/vibrator/pwm_min
+    chmod 0660 /sys/class/timed_output/vibrator/pwm_min
+    chown system system /sys/class/timed_output/vibrator/pwm_default
+    chmod 0660 /sys/class/timed_output/vibrator/pwm_default
+    chown system system /sys/class/timed_output/vibrator/pwm_threshold
+    chmod 0660 /sys/class/timed_output/vibrator/pwm_threshold
 
 # on emmc mount the partition containing firmware
 on post-fs-data 

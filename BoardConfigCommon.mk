@@ -31,10 +31,10 @@ BOARD_FAMILY := quincy
 -include device/samsung/msm8660-common/BoardConfigCommon.mk
 
 # Kernel
-BOARD_KERNEL_CMDLINE        := androidboot.hardware=qcom usb_id_pin_rework=true no_console_suspend=true zcache
-BOARD_KERNEL_BASE           := 0x48000000
-BOARD_KERNEL_PAGESIZE       := 2048
-BOARD_MKBOOTIMG_ARGS        := --ramdisk_offset 0x01600000
+BOARD_KERNEL_CMDLINE := androidboot.hardware=qcom usb_id_pin_rework=true no_console_suspend=true zcache androidboot.selinux=permissive
+BOARD_KERNEL_BASE := 0x48000000
+BOARD_KERNEL_PAGESIZE := 2048
+BOARD_MKBOOTIMG_ARGS := --ramdisk_offset 0x01600000
 
 BOARD_HAS_NO_SELECT_BUTTON := true
 
